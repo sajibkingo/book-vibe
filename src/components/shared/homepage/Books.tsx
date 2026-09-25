@@ -1,7 +1,8 @@
 import React from "react";
 import BookCard from "../BookCard";
+import { IBook } from "@/types/books.types";
 
-const getBooks = async () => {
+const getBooks = async (): Promise<IBook[]> => {
     const res = await fetch("http://localhost:3000/booksData.json");
 
     if (!res.ok) {
@@ -31,9 +32,9 @@ const Books = async () => {
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {booksData.map((book: React.ComponentProps<typeof BookCard>["book"], index) => (
+                {booksData.slice(0,6).map((book: IBook) => (
                     <BookCard
-                        key={index}
+                        key={book.bookId}
                         book={book}
                     />
                 ))}
@@ -43,3 +44,4 @@ const Books = async () => {
 };
 
 export default Books;
+

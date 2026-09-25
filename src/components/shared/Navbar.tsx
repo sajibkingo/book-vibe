@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import logo from "@/assets/book.ico"
+import Link from 'next/link';
 
 const Navbar = () => {
     return (
@@ -31,7 +32,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a>Item 1</a></li>
+                    <li><Link href='/books'>Books</Link></li>
                     <li>
                         <details>
                             <summary>Parent</summary>
@@ -45,8 +46,8 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-2">
-                <a className="btn btn-success">Sign In</a>
-                <a className="btn btn-info">Sign Up</a>
+                <a className="btn btn-success text-white">Sign In</a>
+                <a className="btn btn-info text-white">Sign Up</a>
             </div>
         </div>
     );

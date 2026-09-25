@@ -1,7 +1,9 @@
 import React from "react";
 import Image from "next/image";
+import { IBook } from "@/types/books.types";
+import Link from "next/link";
 
-const Star = ({ className = "" }) => (
+const Star = ({ className = "" }: { className?: string }) => (
     <svg
         aria-hidden="true"
         className={className}
@@ -12,7 +14,7 @@ const Star = ({ className = "" }) => (
     </svg>
 );
 
-const BookOpen = ({ className = "" }) => (
+const BookOpen = ({ className = "" }: { className?: string }) => (
     <svg
         aria-hidden="true"
         className={className}
@@ -28,7 +30,7 @@ const BookOpen = ({ className = "" }) => (
     </svg>
 );
 
-const CalendarDays = ({ className = "" }) => (
+const CalendarDays = ({ className = "" }: { className?: string }) => (
     <svg
         aria-hidden="true"
         className={className}
@@ -44,19 +46,11 @@ const CalendarDays = ({ className = "" }) => (
     </svg>
 );
 
-type Book = {
-    image: string;
-    bookName: string;
-    category: string;
-    rating: number;
-    author: string;
-    tags: string[];
-    totalPages: number;
-    yearOfPublishing: number;
-    publisher: string;
-};
+interface BookCardProps {
+    book: IBook;
+}
 
-const BookCard = ({ book }: { book: Book }) => {
+const BookCard = ({ book }: BookCardProps) => {
     return (
         <div className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-xl">
             <div className="relative h-72 overflow-hidden bg-gray-100">
@@ -138,9 +132,11 @@ const BookCard = ({ book }: { book: Book }) => {
                         </p>
                     </div>
 
-                    <button className="btn btn-sm shrink-0 border-none bg-emerald-600 px-4 text-white hover:bg-emerald-700">
-                        Details
-                    </button>
+                    <Link href={`/books/${book.bookId}`} className="ml-auto">
+                        <button className="btn btn-sm shrink-0 border-none bg-emerald-600 px-4 text-white hover:bg-emerald-700">
+                            Details
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
